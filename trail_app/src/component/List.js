@@ -1,4 +1,5 @@
 import React from "react";
+import './List.css'
 class List extends React.Component {
     constructor(props){
         super(props);
@@ -19,14 +20,12 @@ class List extends React.Component {
             title,
             description
         } = this.state;
-        debugger;
-        event.preventDefault();
     }
 
     render(){
         return(
             <form onSubmit={this.formSubmit}>
-                <h1> ToDo List </h1>
+                <header> ToDo List </header>
                 <input 
                     type = "text"
                     name = "title"
