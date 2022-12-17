@@ -1,5 +1,7 @@
 import React from "react";
 import './List.css'
+import axios from 'axios';
+
 class List extends React.Component {
     constructor(props){
         super(props);
@@ -20,6 +22,20 @@ class List extends React.Component {
             title,
             description
         } = this.state;
+        axios.post("http://localhost:3001/lists",
+        {
+            title: title,
+            description: description
+        },
+        {withCredentials: true}
+        )
+        .then(response => {
+            console.log("response is ", response);
+        })
+        .catch(error => {
+            console.log("error is", error);
+        });
+        // event.preventDefault();
     }
 
     render(){
