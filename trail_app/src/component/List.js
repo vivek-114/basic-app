@@ -39,21 +39,48 @@ class List extends React.Component {
     }
 
     render(){
+
+        const textInput = {
+            height: "30px",
+            width: "350px",
+        };
+
+        const textboxInput = {
+            height: "50px",
+            width: "350px",
+            textRendering: "top !important",
+            paddingTop: "0px",
+            marginTop: "0px",
+            textAlign: "top"
+        };
+
         return(
             <form onSubmit={this.formSubmit}>
                 <header> ToDo List </header>
-                <input 
-                    type = "text"
+                <label>Title:</label>
+                <br></br>
+                <input
+                    // type = "text"
                     name = "title"
                     value = {this.state.title}
                     placeholder = "Please Enter Task title" 
+                    style = {textInput}
                     onChange={this.updateStateVariables}/>
                 <br></br>
-                <input
+                <label>Description:</label>
+                <br></br>
+                {/* <input
                     type = "textbox"
                     name = "description"
                     value = {this.state.description}
                     placeholder = "Please Enter Task description"
+                    style = {textboxInput}
+                    onChange={this.updateStateVariables}/> */}
+                <textarea
+                    name = "description"
+                    value = {this.state.description}
+                    placeholder = "Please Enter Task description"
+                    style = {textboxInput}
                     onChange={this.updateStateVariables}/>
                 <br></br>
                 <button type = "submit"> Submit</button>
