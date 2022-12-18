@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import List from './component/List.js'
+import Registration from './component/Registration';
 
 function App() {
   return (
@@ -21,7 +22,10 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <List />
+    <div>
+      <List />
+      <Registration />
+    </div>
   );
 }
 
