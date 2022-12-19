@@ -1,4 +1,5 @@
 import React from "react";
+import List from "./List";
 
 class Registration extends React.Component{
     constructor(props) {
@@ -21,6 +22,7 @@ class Registration extends React.Component{
         return(
             <form onSubmit={this.createUser}>
                 <div>
+                    <header> ToDo List </header>
                     <label> Email: </label>
                     <br></br>
                     <input type="text" name="email" placeholder="Email" value = {this.state.email}/>
