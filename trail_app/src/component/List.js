@@ -60,7 +60,7 @@ class List extends React.Component {
                 <label>Title:</label>
                 <br></br>
                 <input
-                    // type = "text"
+                    type = "text"
                     name = "title"
                     value = {this.state.title}
                     placeholder = "Please Enter Task title" 

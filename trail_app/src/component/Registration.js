@@ -18,6 +18,13 @@ class Registration extends React.Component{
             password_confirmation
         } = this.state
     }
+
+    updateFieldValues = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
     render(){
         return(
             <form onSubmit={this.createUser}>
@@ -25,15 +32,15 @@ class Registration extends React.Component{
                     <header> ToDo List </header>
                     <label> Email: </label>
                     <br></br>
-                    <input type="text" name="email" placeholder="Email" value = {this.state.email}/>
+                    <input type="text" name="email" placeholder="Email" value = {this.state.email} onChange = {this.updateFieldValues}/>
                     <br></br>
                     <label> Password:</label>
                     <br></br>
-                    <input type="text" name="password" placeholder="Password" value = {this.state.password}/>
+                    <input type="text" name="password" placeholder="Password" value = {this.state.password} onChange = {this.updateFieldValues}/>
                     <br></br>
                     <label> Password Confirmation:</label>
                     <br></br>
-                    <input type="text" name="password_confirmation" placeholder="Password Confirmation" value = {this.state.password_confirmation}/>
+                    <input type="text" name="password_confirmation" placeholder="Password Confirmation" value = {this.state.password_confirmation} onChange = {this.updateFieldValues}/>
                     <br></br>
                     <button type="submit">Create User</button>
                 </div>
