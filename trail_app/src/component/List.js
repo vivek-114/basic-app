@@ -1,27 +1,27 @@
 import React from "react";
 import './List.css'
 import axios from 'axios';
+import { useState } from "react";
 
-class List extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            title: "",
-            description: ""
-        }
+function List(props) {
+    const [inputsData, setInputsData] = useState({title: "",
+        description: ""
+    });
+
+    const updateFieldValues = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        // setInputsData({[name]: value});
+        setInputsData(previousState => {
+            return { ...previousState, [name]: value}
+          });
     }
 
-    updateStateVariables = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value
-        })
-    }
-
-    formSubmit = (event) => {
+    const formSubmit = (event) => {
         const {
             title,
             description
-        } = this.state;
+        } = inputsData;
         axios.post("http://localhost:3001/lists",
         {
             title: title,
@@ -38,55 +38,45 @@ class List extends React.Component {
         // event.preventDefault();
     }
 
-    render(){
+    const textInput = {
+        height: "30px",
+        width: "350px",
+    };
 
-        const textInput = {
-            height: "30px",
-            width: "350px",
-        };
+    const textboxInput = {
+        height: "50px",
+        width: "350px",
+        textRendering: "top !important",
+        paddingTop: "0px",
+        marginTop: "0px",
+        textAlign: "top"
+    };
 
-        const textboxInput = {
-            height: "50px",
-            width: "350px",
-            textRendering: "top !important",
-            paddingTop: "0px",
-            marginTop: "0px",
-            textAlign: "top"
-        };
-
-        return(
-            <form onSubmit={this.formSubmit}>
-                <header> ToDo List </header>
-                <label>Title:</label>
-                <br></br>
-                <input
-                    type = "text"
-                    name = "title"
-                    value = {this.state.title}
-                    placeholder = "Please Enter Task title" 
-                    style = {textInput}
-                    onChange={this.updateStateVariables}/>
-                <br></br>
-                <label>Description:</label>
-                <br></br>
-                {/* <input
-                    type = "textbox"
-                    name = "description"
-                    value = {this.state.description}
-                    placeholder = "Please Enter Task description"
-                    style = {textboxInput}
-                    onChange={this.updateStateVariables}/> */}
-                <textarea
-                    name = "description"
-                    value = {this.state.description}
-                    placeholder = "Please Enter Task description"
-                    style = {textboxInput}
-                    onChange={this.updateStateVariables}/>
-                <br></br>
-                <button type = "submit"> Submit</button>
-            </form>
-        );
-    }
+    return(
+        <form onSubmit={formSubmit}>
+            <header> ToDo List </header>
+            <label>Title:</label>
+            <br></br>
+            <input
+                type = "text"
+                name = "title"
+                value = {inputsData.title || ""}
+                placeholder = "Please Enter Task title" 
+                style = {textInput}
+                onChange={updateFieldValues}/>
+            <br></br>
+            <label>Description:</label>
+            <br></br>
+            <textarea
+                name = "description"
+                value = {inputsData.description || ""}
+                placeholder = "Please Enter Task description"
+                style = {textboxInput}
+                onChange={updateFieldValues}/>
+            <br></br>
+            <button type = "submit"> Submit</button>
+        </form>
+    );
 }
 
 export default List;
