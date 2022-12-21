@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {BrowserRouter as Router, useNavigate} from 'react-router-dom'
+import TodolistNavbar from './TodolistNavbar'
 
 function Registration(props){
 
@@ -72,7 +73,7 @@ function Registration(props){
     return(
         <form onSubmit={createUser}>
             <div>
-                <header> ToDo List </header>
+                <TodolistNavbar />
                 <label> Email: </label>
                 <br></br>
                 <input
@@ -85,7 +86,7 @@ function Registration(props){
                 <label> Password:</label>
                 <br></br>
                 <input
-                type="text"
+                type="password"
                 name="password"
                 placeholder="Password"
                 value = {inputsData.password || ""}
@@ -94,7 +95,7 @@ function Registration(props){
                 <label> Password Confirmation:</label>
                 <br></br>
                 <input
-                type="text"
+                type="password"
                 name="password_confirmation"
                 placeholder="Password Confirmation"
                 value = {inputsData.password_confirmation || ""}
