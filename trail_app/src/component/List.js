@@ -2,8 +2,11 @@ import React from "react";
 import './List.css'
 import axios from 'axios';
 import { useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 function List(props) {
+    debugger;
+    const location = useLocation();
     const [inputsData, setInputsData] = useState({title: "",
         description: ""
     });
@@ -75,6 +78,8 @@ function List(props) {
                 onChange={updateFieldValues}/>
             <br></br>
             <button type = "submit"> Submit</button>
+            <br></br>
+            <label> login status: {props.login_status}</label>
         </form>
     );
 }

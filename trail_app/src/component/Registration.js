@@ -37,14 +37,9 @@ function Registration(props){
         {withCredentials: true}
         )
         .then(response => {
-            // console.log("response is ", response);
             if (response.data.status === "Created") {
+                props.handleSuccessfulRegistration(response.data.user);
                 setNavigateSuccess(response.data);
-                // const data = response.dat a;
-                // history.replace('/');
-                // const navigate = useNavigate();
-                // navigate('/');
-                // this.useHandleSuccessfulSignin(response.data);
             }
         })
         .catch(error => {
@@ -55,20 +50,9 @@ function Registration(props){
 
     useEffect(() => {
         if (navigateSuccess.length !== 0){
-            navigate("/", { replace: true });
+            navigate("/dashboard", { replace: true , state: navigateSuccess});
         }
     }, [navigateSuccess]);
-
-    // const useHandleSuccessfulSignin = (data) => {
-    //     return <Redirect to='/target' />
-    //     const history = createHashHistory();
-    //     history.go("/login");
-    //     const history = useHistory()
-    //     history.push("/")
-    //     const navigate = useNavigate();
-    //     navigate('/');
-    //     this.props.history.push("/");
-    // }
 
     return(
         <form onSubmit={createUser}>
