@@ -10,10 +10,10 @@ function TodolistNavbar (){
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Nav className="me-auto">
-                        <Navbar.Brand href="#home">ToDo List</Navbar.Brand>
+                        <Navbar.Brand href="/dashboard">ToDo List</Navbar.Brand>
                         <Nav.Link href="/lists">LISTS</Nav.Link>
-                        <Nav.Link href="#users">Users</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <Nav.Link href="/users">USERS</Nav.Link>
+                        {/* <Nav.Link href="#pricing">Pricing</Nav.Link> */}
                     </Nav>
                 </Container>
             </Navbar>

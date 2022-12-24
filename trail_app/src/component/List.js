@@ -3,9 +3,9 @@ import './List.css'
 import axios from 'axios';
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
+import TodolistNavbar from "./TodolistNavbar";
 
 function List(props) {
-    debugger;
     const location = useLocation();
     const [inputsData, setInputsData] = useState({title: "",
         description: ""
@@ -57,7 +57,8 @@ function List(props) {
 
     return(
         <form onSubmit={formSubmit}>
-            <header> ToDo List </header>
+            {/* <header> ToDo List </header> */}
+            <TodolistNavbar />
             <label>Title:</label>
             <br></br>
             <input

@@ -7,6 +7,7 @@ import { useState } from 'react';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import DynamicTable from './component/DynamicTable';
 import ListData from './component/ListData';
+import User from './component/Users'
 
 function App() {
   // this.handleSuccessfulRegistration = this.handleSuccessfulRegistration.bind(this);
@@ -51,6 +52,7 @@ function App() {
             path = "/lists"
             element = {<ListData />}>
           </Route>
+          <Route path="/users" element = {<User />} ></Route>
         </Routes>
       </BrowserRouter>
     </div>
