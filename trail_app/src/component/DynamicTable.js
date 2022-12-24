@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import TodolistNavbar from "./TodolistNavbar";
 // import TableData from "./TableData";
 function DynamicTable(props){
 
 // get table column
-debugger;
  const column = Object.keys(props.Tabledata[0]);
 
  // get table heading data
@@ -32,6 +32,8 @@ const tdData =() =>{
 
 
   return (
+    <div>
+      <TodolistNavbar />
       <table className="table">
         <thead>
          <tr>{ThData()}</tr>
@@ -40,6 +42,7 @@ const tdData =() =>{
         {tdData()}
         </tbody>
        </table>
+    </div>
   )
 }
 export default DynamicTable;

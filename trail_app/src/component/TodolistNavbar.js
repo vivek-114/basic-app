@@ -11,8 +11,8 @@ function TodolistNavbar (){
                 <Container>
                     <Nav className="me-auto">
                         <Navbar.Brand href="#home">ToDo List</Navbar.Brand>
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
+                        <Nav.Link href="/lists">LISTS</Nav.Link>
+                        <Nav.Link href="#users">Users</Nav.Link>
                         <Nav.Link href="#pricing">Pricing</Nav.Link>
                     </Nav>
                 </Container>
