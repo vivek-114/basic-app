@@ -38,7 +38,7 @@ function Registration(props){
         )
         .then(response => {
             if (response.data.status === "Created") {
-                props.handleSuccessfulRegistration(response.data.user);
+                props.handleSuccessfulAuthorization(response.data.user);
                 setNavigateSuccess(response.data);
             }
         })

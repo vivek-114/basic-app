@@ -8,13 +8,14 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // import DynamicTable from './component/DynamicTable';
 import ListData from './component/ListData';
 import User from './component/Users'
+import Login from './component/Login';
 
 function App() {
   // this.handleSuccessfulRegistration = this.handleSuccessfulRegistration.bind(this);
   const [user, setUser] = useState({login_status: "NOT_LOGGED_IN",
     logged_in_user: ""});
   debugger;
-  const handleSuccessfulRegistration=(data) =>{
+  const handleSuccessfulAuthorization=(data) =>{
     setUser({
       login_status: "LOGGED_IN",
       logged_in_user: data
@@ -43,7 +44,7 @@ function App() {
           </Route>
           <Route
           path="registrations"
-          element = {<Registration handleSuccessfulRegistration={handleSuccessfulRegistration}/>} />
+          element = {<Registration handleSuccessfulAuthorization={handleSuccessfulAuthorization}/>} />
           {/* <Route
             path = "/table"
             element = {<DynamicTable Tabledata={TableData}/>} >
@@ -53,6 +54,10 @@ function App() {
             element = {<ListData />}>
           </Route>
           <Route path="/users" element = {<User />} ></Route>
+          <Route 
+          path="/login" 
+          element = {<Login handleSuccessfulAuthorization={handleSuccessfulAuthorization}/>} >
+          </Route>
         </Routes>
       </BrowserRouter>
     </div>
