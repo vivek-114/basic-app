@@ -57,7 +57,7 @@ function Registration(props){
     return(
         <form onSubmit={createUser}>
             <div>
-                <TodolistNavbar />
+                <TodolistNavbar login_status = {props.login_status}/>
                 <label> Email: </label>
                 <br></br>
                 <input

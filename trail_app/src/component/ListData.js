@@ -57,8 +57,10 @@ import DynamicTable from './DynamicTable';
 
 function ListData(props) {
     const [totalListData, setTotalListData] = useState([{}]);
+    const loginStatus = props.login_status;
 
     useMemo(() => {
+        debugger;
         axios.get("http://localhost:3001/lists",{withCredentials: true})
         .then(response => {
             console.log("response is ", response);
@@ -69,6 +71,20 @@ function ListData(props) {
         .catch(error => {
             console.log("error is", error);
         });
+        // if (props.login_status === "Created" || props.login_status === "LoggedIn"){
+        //     axios.get("http://localhost:3001/lists",{withCredentials: true})
+        //     .then(response => {
+        //         console.log("response is ", response);
+        //         if (response.data.length !== 0){
+        //             setTotalListData(response.data);
+        //         }
+        //     })
+        //     .catch(error => {
+        //         console.log("error is", error);
+        //     });
+        // } else {
+        //     setTotalListData([{}]);
+        // }
       }, []);
 
     // const getAllListData= () => {
@@ -84,7 +100,8 @@ function ListData(props) {
     //     });
     // }
     return(
-        <DynamicTable Tabledata={totalListData}/>
+        <DynamicTable Tabledata={totalListData} login_status = {props.login_status}/>
+        // <label> login status: {props.login_status} </label>
         // <div onLoad={getAllListData()}>
         //     <DynamicTable Tabledata={totalListData}/>
         // </div>

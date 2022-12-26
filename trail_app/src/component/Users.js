@@ -20,7 +20,7 @@ function User(props){
 
     return(
         <div>
-            <DynamicTable Tabledata = {createdUserData} />
+            <DynamicTable Tabledata = {createdUserData} login_status = {props.login_status}/>
         </div>
     );
 }

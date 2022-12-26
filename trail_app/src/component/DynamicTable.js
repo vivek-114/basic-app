@@ -33,7 +33,7 @@ const tdData =() =>{
 
   return (
     <div>
-      <TodolistNavbar />
+      <TodolistNavbar login_status = {props.login_status}/>
       <table className="table">
         <thead>
          <tr>{ThData()}</tr>
@@ -42,6 +42,9 @@ const tdData =() =>{
         {tdData()}
         </tbody>
        </table>
+       {props.login_status.length > 0 && props.login_status == "LOGGED_IN" &&
+        <label> login status: {props.login_status}</label>
+        }
     </div>
   )
 }

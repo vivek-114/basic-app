@@ -1,7 +1,8 @@
 import React from "react";
 import axios from "axios";
 import { useState,useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useMemo } from "react-router-dom";
+import TodolistNavbar from "./TodolistNavbar";
 
 function Login(props){
 
@@ -52,6 +53,7 @@ function Login(props){
     return(
         <div>
             <form>
+                <TodolistNavbar login_status = {props.login_status}/>
                 <label> Email:</label>
                 <br></br>
                 <input type="email" name="email" value={loginData.email || ""} placeholder="Enter Email"
@@ -62,7 +64,7 @@ function Login(props){
                 <input type="password" name="password" value={loginData.password || ""} placeholder="Enter Password"
                 onChange={setLoginDetails} />
                 <br></br>
-                <button type="submit" onClick={loginUser}>Create User</button>
+                <button type="submit" onClick={loginUser}>LOGIN</button>
             </form>
         </div>
     );

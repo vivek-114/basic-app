@@ -58,7 +58,7 @@ function List(props) {
     return(
         <form onSubmit={formSubmit}>
             {/* <header> ToDo List </header> */}
-            <TodolistNavbar />
+            <TodolistNavbar login_status = {props.login_status}/>
             <label>Title:</label>
             <br></br>
             <input
