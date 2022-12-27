@@ -27,10 +27,12 @@ function App() {
     axios.get("http://localhost:3001/is_user_logged_in",{withCredentials: true})
     .then(response => {
       // console.log("response is ", response);
-      setUser({
-        login_status: "LOGGED_IN",
-        logged_in_user: response.data.user
-      });
+      if (response.data.status === "LoggedIn") {
+        setUser({
+          login_status: "LOGGED_IN",
+          logged_in_user: response.data.user
+        });
+      }
     })
     .catch(error => {
       console.log("error is", error);
