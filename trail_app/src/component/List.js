@@ -25,10 +25,17 @@ function List(props) {
             title,
             description
         } = inputsData;
+        var email = "";
+        if (props.logged_in_user.length > 0) {
+            email = props.logged_in_user;
+        } else {
+            email = '';
+        }
         axios.post("http://localhost:3001/lists",
         {
             title: title,
-            description: description
+            description: description,
+            email: email
         },
         {withCredentials: true}
         )

@@ -61,7 +61,7 @@ function App() {
         <Routes>
           {/* <Route path="/dashboard" element= {<List />}> </Route> */}
           <Route path="/dashboard"
-          element = { <List login_status = {user.login_status}/> } > </Route>
+          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user}/> } > </Route>
           <Route path="registrations"
           element = {<Registration handleSuccessfulAuthorization={handleSuccessfulAuthorization} login_status = {user.login_status}/>} />
           {/* <Route
