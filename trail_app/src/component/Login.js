@@ -3,15 +3,18 @@ import axios from "axios";
 import { useState,useEffect } from "react";
 import { useNavigate, useMemo } from "react-router-dom";
 import TodolistNavbar from "./TodolistNavbar";
+import FlashAlert from "./FlashAlert";
 
 function Login(props){
 
     const navigate = useNavigate();
     const [navigateSuccess, setNavigateSuccess] = useState("");
+    const [flashNotice, setFlashNotice] = useState("");
     const [loginData, setLoginData] = useState({
         email: "",
         password: ""
     });
+    const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
 
     const setLoginDetails=(event)=>{
         setLoginData(previousState => {
@@ -36,6 +39,11 @@ function Login(props){
             if (response.data.status === "LoggedIn") {
                 props.handleSuccessfulAuthorization(response.data.user);
                 setNavigateSuccess(response.data);
+                setIsLoginSuccessful(true);
+            } else {
+                console.log("login failed");
+                setIsLoginSuccessful(false);
+                setFlashNotice("Login Failed! please check the username and password.")
             }
         })
         .catch(error => {
@@ -52,7 +60,8 @@ function Login(props){
 
     return(
         <div>
-            <form>
+            {isLoginSuccessful ? (
+                <form>
                 <TodolistNavbar login_status = {props.login_status}/>
                 <label> Email:</label>
                 <br></br>
@@ -66,6 +75,23 @@ function Login(props){
                 <br></br>
                 <button type="submit" onClick={loginUser}>LOGIN</button>
             </form>
+            ) : (
+                <form>
+                <TodolistNavbar login_status = {props.login_status}/>
+                {flashNotice && <FlashAlert message={ flashNotice } />}
+                <label> Email:</label>
+                <br></br>
+                <input type="email" name="email" value={loginData.email || ""} placeholder="Enter Email"
+                onChange={setLoginDetails} />
+                <br></br>
+                <label> Password:</label>
+                <br></br>
+                <input type="password" name="password" value={loginData.password || ""} placeholder="Enter Password"
+                onChange={setLoginDetails} />
+                <br></br>
+                <button type="submit" onClick={loginUser}>LOGIN</button>
+            </form>
+            )}
         </div>
     );
 }
