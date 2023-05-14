@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useState } from "react";
 import { useLocation } from 'react-router-dom';
 import TodolistNavbar from "./TodolistNavbar";
+import FlashAlert from "./FlashAlert";
 
 function List(props) {
     const location = useLocation();
@@ -66,6 +67,8 @@ function List(props) {
         <form onSubmit={formSubmit}>
             {/* <header> ToDo List </header> */}
             <TodolistNavbar login_status = {props.login_status}/>
+             {props.flash_message && <FlashAlert message={ props.flash_message } />}
+             {/* {props.flash.message && <FlashAlert message={ props.flash.message } />} */}
             <label>Title:</label>
             <br></br>
             <input

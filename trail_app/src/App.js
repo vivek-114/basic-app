@@ -10,16 +10,22 @@ import ListData from './component/ListData';
 import User from './component/Users'
 import Login from './component/Login';
 import axios from 'axios';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
+// import {Container, Button , Alert} from 'react-bootstrap';
 
 function App() {
   // this.handleSuccessfulRegistration = this.handleSuccessfulRegistration.bind(this);
   const [user, setUser] = useState({login_status: "NOT_LOGGED_IN",
     logged_in_user: ""});
+  const [flashNotice, setFlashNotice] = useState("");
+  const [flashNoticeClass, setflashNoticeClass] = useState("");
 
   const handleSuccessfulAuthorization=(data) =>{
     setUser({
       login_status: "LOGGED_IN",
-      logged_in_user: data
+      logged_in_user: data.user,
+      flash_message: data.flash.message
     });
   }
 
@@ -32,6 +38,10 @@ function App() {
           login_status: "LOGGED_IN",
           logged_in_user: response.data.user
         });
+      }
+      if (response.data.flash !== null) {
+        setFlashNotice(response.data.flash.message);
+        setflashNoticeClass(response.data.flash.class);
       }
     })
     .catch(error => {
@@ -60,8 +70,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* <Route path="/dashboard" element= {<List />}> </Route> */}
-          <Route path="/dashboard"
-          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user}/> } > </Route>
+          {(flashNotice && flashNoticeClass) ? <Route path="/dashboard"
+          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user} flash_message = {flashNotice} flash_class = {flashNoticeClass}/> } > </Route> : <Route path="/dashboard"
+          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user} flash_message = {user.flash_message}/> } > </Route> }
+          {/* <Route path="/dashboard"
+          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user}/> } > </Route> */}
           <Route path="registrations"
           element = {<Registration handleSuccessfulAuthorization={handleSuccessfulAuthorization} login_status = {user.login_status}/>} />
           {/* <Route

@@ -10,6 +10,7 @@ function Login(props){
     const navigate = useNavigate();
     const [navigateSuccess, setNavigateSuccess] = useState("");
     const [flashNotice, setFlashNotice] = useState("");
+    const [flashNoticeClass, setflashNoticeClass] = useState("");
     const [loginData, setLoginData] = useState({
         email: "",
         password: ""
@@ -34,12 +35,15 @@ function Login(props){
             password: password
         },{withCredentials: true})
         .then(response => {
-            debugger;
             console.log("response is",response);
             if (response.data.status === "LoggedIn") {
-                props.handleSuccessfulAuthorization(response.data.user);
+                props.handleSuccessfulAuthorization(response.data);
                 setNavigateSuccess(response.data);
                 setIsLoginSuccessful(true);
+                if (response.data.flash !== null) {
+                    setFlashNotice(response.data.flash.message);
+                    setflashNoticeClass(response.data.flash.class);
+                }
             } else {
                 console.log("login failed");
                 setIsLoginSuccessful(false);
