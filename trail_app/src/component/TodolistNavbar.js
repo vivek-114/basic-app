@@ -18,7 +18,6 @@ function TodolistNavbar (props){
     const navigate = useNavigate();
     const [navigateSuccessfulSignOut, setNavigateSuccessfulSignOut] = useState("");
     const handleLogoutClick=(event)=>{
-        debugger;
         axios.get("http://localhost:3001/clear_session",{withCredentials: true})
         .then(response =>{
             console.log("response is", response);
@@ -41,8 +40,8 @@ function TodolistNavbar (props){
     return(
         <>
             <Navbar bg="dark" variant="dark">
-                {props.login_status.length > 0 && props.login_status === "LOGGED_IN" ?
-                    <Container> <Nav className="me-auto"> <Navbar.Brand href="/dashboard">ToDo List</Navbar.Brand><Nav.Link href="/lists">LISTS</Nav.Link> <Nav.Link href="/users">USERS</Nav.Link> <Nav.Link href="#logout" onClick={handleLogoutClick}>LOG OUT</Nav.Link> </Nav> </Container> :
+                {props.login_status.length > 0 && props.login_status === "LOGGED_IN" ? props.user_role === "super_admin" ? <Container> <Nav className="me-auto"> <Navbar.Brand href="/dashboard">ToDo List</Navbar.Brand><Nav.Link href="/lists">LISTS</Nav.Link> <Nav.Link href="/users">USERS</Nav.Link> <Nav.Link href="#logout" onClick={handleLogoutClick}>LOG OUT</Nav.Link> </Nav> </Container>:
+                    <Container> <Nav className="me-auto"> <Navbar.Brand href="/dashboard">ToDo List</Navbar.Brand><Nav.Link href="/lists">LISTS</Nav.Link> <Nav.Link href="#logout" onClick={handleLogoutClick}>LOG OUT</Nav.Link> </Nav> </Container> :
                     <Container> <Nav className="me-auto"> <Navbar.Brand href="/login">ToDo List</Navbar.Brand> <Nav.Link href="/login">LOGIN</Nav.Link><Nav.Link href="/registrations">REGISTER</Nav.Link> </Nav></Container>
                 }
                 {/* <Container>

@@ -100,7 +100,7 @@ function ListData(props) {
     //     });
     // }
     return(
-        <DynamicTable Tabledata={totalListData} login_status = {props.login_status}/>
+        <DynamicTable Tabledata={totalListData} login_status = {props.login_status} user_role = {props.role}/>
         // <label> login status: {props.login_status} </label>
         // <div onLoad={getAllListData()}>
         //     <DynamicTable Tabledata={totalListData}/>

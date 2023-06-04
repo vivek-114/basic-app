@@ -33,7 +33,7 @@ const tdData =() =>{
 
   return (
     <div>
-      <TodolistNavbar login_status = {props.login_status}/>
+      <TodolistNavbar login_status = {props.login_status} user_role = {props.user_role}/>
       <table className="table">
         <thead>
          <tr>{ThData()}</tr>

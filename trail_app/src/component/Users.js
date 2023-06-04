@@ -5,7 +5,6 @@ import DynamicTable from "./DynamicTable";
 
 function User(props){
     const [createdUserData, setCreatedUserData] = useState([{}]);
-
     useMemo(() => {
         axios.get("http://localhost:3001/users", {withCredentials: true})
         .then((response)=> {
@@ -20,7 +19,7 @@ function User(props){
 
     return(
         <div>
-            <DynamicTable Tabledata = {createdUserData} login_status = {props.login_status}/>
+            <DynamicTable Tabledata = {createdUserData} login_status = {props.login_status} user_role = {props.role}/>
         </div>
     );
 }

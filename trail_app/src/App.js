@@ -36,7 +36,8 @@ function App() {
       if (response.data.status === "LoggedIn") {
         setUser({
           login_status: "LOGGED_IN",
-          logged_in_user: response.data.user
+          logged_in_user: response.data.user,
+          role: response.data.role
         });
       }
       if (response.data.flash !== null) {
@@ -71,8 +72,8 @@ function App() {
         <Routes>
           {/* <Route path="/dashboard" element= {<List />}> </Route> */}
           {(flashNotice && flashNoticeClass) ? <Route path="/dashboard"
-          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user} flash_message = {flashNotice} flash_class = {flashNoticeClass}/> } > </Route> : <Route path="/dashboard"
-          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user} flash_message = {user.flash_message}/> } > </Route> }
+          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user} flash_message = {flashNotice} flash_class = {flashNoticeClass} role = {user.role}/> } > </Route> : <Route path="/dashboard"
+          element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user} flash_message = {user.flash_message} role = {user.role}/> } > </Route> }
           {/* <Route path="/dashboard"
           element = { <List login_status = {user.login_status} logged_in_user={user.logged_in_user}/> } > </Route> */}
           <Route path="registrations"
@@ -83,9 +84,9 @@ function App() {
           </Route> */}
           <Route
             path = "/lists"
-            element = {<ListData login_status = {user.login_status} />}>
+            element = {<ListData login_status = {user.login_status} role = {user.role}/>}>
           </Route>
-          <Route path="/users" element = {<User login_status = {user.login_status} />} ></Route>
+          <Route path="/users" element = {<User login_status = {user.login_status} role = {user.role} />} ></Route>
           <Route 
           path="/login" 
           element = {<Login handleSuccessfulAuthorization={handleSuccessfulAuthorization} login_status = {user.login_status}/>} >
