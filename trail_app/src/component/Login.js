@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "axios";
+import './Login.css'
 import { useState,useEffect } from "react";
 import { useNavigate, useMemo } from "react-router-dom";
 import TodolistNavbar from "./TodolistNavbar";
@@ -64,39 +65,45 @@ function Login(props){
 
     return(
         <div>
-            {isLoginSuccessful ? (
-                <form>
-                <TodolistNavbar login_status = {props.login_status}/>
-                <label> Email:</label>
-                <br></br>
-                <input type="email" name="email" value={loginData.email || ""} placeholder="Enter Email"
-                onChange={setLoginDetails} />
-                <br></br>
-                <label> Password:</label>
-                <br></br>
-                <input type="password" name="password" value={loginData.password || ""} placeholder="Enter Password"
-                onChange={setLoginDetails} />
-                <br></br>
-                <button type="submit" onClick={loginUser}>LOGIN</button>
-            </form>
-            ) : (
-                <form>
-                <TodolistNavbar login_status = {props.login_status}/>
-                {flashNotice && <FlashAlert message={ flashNotice } />}
-                <label> Email:</label>
-                <br></br>
-                <input type="email" name="email" value={loginData.email || ""} placeholder="Enter Email"
-                onChange={setLoginDetails} />
-                <br></br>
-                <label> Password:</label>
-                <br></br>
-                <input type="password" name="password" value={loginData.password || ""} placeholder="Enter Password"
-                onChange={setLoginDetails} />
-                <br></br>
-                <button type="submit" onClick={loginUser}>LOGIN</button>
-            </form>
-            )}
+            <TodolistNavbar login_status = {props.login_status}/>
+            <div className="main">
+                <div className="sub-main">
+                    {isLoginSuccessful ? (
+                        <form>
+                        {/* <TodolistNavbar login_status = {props.login_status}/> */}
+                        <label> Email:</label>
+                        <br></br>
+                        <input type="email" name="email" value={loginData.email || ""} placeholder="Enter Email"
+                        onChange={setLoginDetails} />
+                        <br></br>
+                        <label> Password:</label>
+                        <br></br>
+                        <input type="password" name="password" value={loginData.password || ""} placeholder="Enter Password"
+                        onChange={setLoginDetails} />
+                        <br></br>
+                        <button type="submit" onClick={loginUser}>LOGIN</button>
+                    </form>
+                    ) : (
+                        <form>
+                        {/* <TodolistNavbar login_status = {props.login_status}/> */}
+                        {flashNotice && <FlashAlert message={ flashNotice } />}
+                        <label> Email:</label>
+                        <br></br>
+                        <input type="email" name="email" value={loginData.email || ""} placeholder="Enter Email"
+                        onChange={setLoginDetails} />
+                        <br></br>
+                        <label> Password:</label>
+                        <br></br>
+                        <input type="password" name="password" value={loginData.password || ""} placeholder="Enter Password"
+                        onChange={setLoginDetails} />
+                        <br></br>
+                        <button type="submit" onClick={loginUser}>LOGIN</button>
+                    </form>
+                    )}
+                </div>
+            </div>
         </div>
+        
     );
 }
 
